@@ -49,8 +49,32 @@ namespace Sweepstakes
         {
             foreach (KeyValuePair<int, Contestant> person in contestants)
             {
-                    Console.WriteLine(person.Key + " - " + person.Value);
+                    Console.WriteLine(person.Value.registrationNumber + " - " + person.Value.firstName + " " + person.Value.lastName + "   " + person.Value.email);
             }
+        }
+
+        public void CreatePlayers(Sweepstakes sweepstakes)
+        {
+            Console.WriteLine("The contestants are:");
+            Contestant contestant = sweepstakes.CreateContestant("Julie", "D.", "jd@gmail.com");
+            sweepstakes.RegisterContestant(contestant);
+            contestant = sweepstakes.CreateContestant("Brian", "D.", "bd@gmail.com");
+            sweepstakes.RegisterContestant(contestant);
+            contestant = sweepstakes.CreateContestant("Audrey", "E.", "ae@gmail.com");
+            sweepstakes.RegisterContestant(contestant);
+            contestant = sweepstakes.CreateContestant("Naomi", "J.", "nj@gmail.comm");
+            sweepstakes.RegisterContestant(contestant);
+            contestant = sweepstakes.CreateContestant("Tonje", "N.", "tn@gmail.com");
+            sweepstakes.RegisterContestant(contestant);
+            sweepstakes.PrintContestantInfo(contestant);
+            Console.WriteLine();
+        }
+
+        public void RunSweepstakes(ISweepstakesManager sweepstakesManager)
+        {
+            Sweepstakes sweepstakes = sweepstakesManager.GetSweepstakes();
+            string winner = sweepstakes.PickWinner();
+            Console.WriteLine(winner);
         }
     }
 }
